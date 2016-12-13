@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+	</head>
+	<body>
+	<div class = "jumbotron">
+		<div class = "col-xs-12">
+			<h1>Hungry Food Finder</h1>
+			<a href = "{{url_for('about') }}">About this project</a>
+		</div>
+	</div>
+		<div class = "container">
+			<div class= "row">
+					{% if terms %}  <!-- After user sets the terms variable this if statement runs -->
+						<h2>Top 3 searches</h2>
+						<ul> <!-- unordered list view -->
+							{% for term in terms %}  <!-- For loop sets term variable = to the terms object which is set in  web.py  -->
+								<li> <b>Name: </b>{{  term['name']  }}  <b>Rating: </b>{{  term['rating']  }}  <b>Phone Number: </b>{{  term['phone']  }}</li>
+							{% endfor %}
+						</ul>
+						<a href="{{ url_for('index') }}">Look up another place</a>
+					{% else %} <!-- Start app here -->
+						<h3 text-indent: 50px>What to eat?</h3> 
+						<form action = "/" class = "form-inline">
+							<div class = "form-group"> <!-- Sets whatever user types in = to terms variable -->
+								<input type="text" name="terms" placeholder = "Food, City, State">
+							</div>
+							<input type="submit" value ="Find" class = "btn
+							btn-primary">
+						</form>
+					{% endif %}
+			</div>
+		</div>
+
+		<div class = "row">
+		</div>
+
+	</body>
+</html>
